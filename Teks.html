@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ubah Warna Teks & Latar</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hello-text {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .target-container {
+            background-color: white; /* Default latar teks target */
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .target-text {
+            font-size: 1.8rem;
+            color: #000; /* Default warna teks target */
+        }
+
+        .button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .change-text-btn {
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .change-text-btn:hover {
+            background-color: #45a049;
+        }
+
+        .color-picker-btn {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: #2196F3;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .color-picker-btn input[type="color"] {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        /* Responsif untuk ponsel */
+        @media (max-width: 576px) {
+            .hello-text {
+                font-size: 2rem;
+            }
+
+            .target-text {
+                font-size: 1.5rem;
+            }
+
+            .button-group {
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="hello-text">Hello Everyone!😃</h1>
+
+    <div class="target-container" id="targetContainer">
+        <p class="target-text" id="targetText">this color can you change</p>
+    </div>
+
+    <div class="button-group">
+        <!-- Tombol 1: Ubah warna tulisan -->
+        <button class="change-text-btn" id="changeTextColorBtn">click this</button>
+
+        <!-- Tombol 2: Pilih warna latar teks -->
+        <label class="color-picker-btn">
+            Choose Background Color
+            <input type="color" id="backgroundColorPicker" value="#ffffff">
+        </label>
+    </div>
+
+    <script>
+        // Ambil elemen dari DOM
+        const targetText = document.getElementById('targetText');
+        const targetContainer = document.getElementById('targetContainer');
+        const changeTextColorBtn = document.getElementById('changeTextColorBtn');
+        const backgroundColorPicker = document.getElementById('backgroundColorPicker');
+
+        // Daftar warna acak untuk tombol "click this"
+        const textColors = ['#ff0000', '#00ff00', '#0000ff', '#ff9900', '#9900ff', '#00ffff', '#ff00ff'];
+
+        // Fungsi ubah warna tulisan
+        changeTextColorBtn.addEventListener('click', () => {
+            // Pilih warna acak dari daftar
+            const randomColor = textColors[Math.floor(Math.random() * textColors.length)];
+            targetText.style.color = randomColor;
+        });
+
+        // Fungsi ubah warna latar teks
+        backgroundColorPicker.addEventListener('input', (e) => {
+            targetContainer.style.backgroundColor = e.target.value;
+        });
+    </script>
+</body>
+</html>
